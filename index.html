@@ -3,257 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>친절한 조형관 탐색기</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=MS+Sans+Serif&display=swap');
-        
-        body {
-            font-family: 'MS Sans Serif', sans-serif;
-            background-color: #000;
-            color: white;
-            overflow: hidden;
-        }
-        .desktop {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-        }
-        .icon {
-            display: inline-block;
-            text-align: center;
-            width: 80px;
-            margin: 20px;
-            cursor: pointer;
-        }
-        .window {
-            position: absolute;
-            width: 500px;
-            height: 300px;
-            background: #FFFFFF;
-            border: 3px solid black;
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
-            display: none;
-            transition: transform 0.1s ease-in-out;
-        }
-        .title-bar {
-            background: linear-gradient(to right, navy, blue);
-            color: white;
-            padding: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-        }
-        .content {
-            padding: 10px;
-            font-family: 'MS Sans Serif', sans-serif;
-            color: black;
-            background: white;
-            height: 200px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-        }
-        .deleted-text {
-            color: red;
-            text-decoration: line-through;
-        }
-        .hidden-comment {
-            font-size: 10px;
-            color: gray;
-            display: none;
-        }
-        .taskbar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #C0C0C0;
-            border-top: 2px solid #808080;
-            box-shadow: inset 0px 2px #FFFFFF, inset 0px -2px #808080;
-            padding: 5px;
-            text-align: left;
-            border-top: 2px solid gray;
-            display: flex;
-            align-items: center;
-        }
-        .start-btn {
-            background: silver;
-            color: black;
-            padding: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            border: 2px outset gray;
-            margin-left: 5px;
-        }
-        .start-menu {
-            display: none;
-            position: absolute;
-            bottom: 40px;
-            left: 10px;
-            background: white;
-            border: 2px solid black;
-            padding: 10px;
-        }
-        #password-container {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            display: flex;
-            align-items: center;
-        }
-        #password-input {
-            padding: 5px;
-            font-size: 14px;
-        }
-        #timer {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            color: red;
-        }
-    </style>
-    <script>
-        let timer;
-        let timeLeft = 180;  // 3 minutes
-
-        function startTimer() {
-            timer = setInterval(function() {
-                timeLeft--;
-                document.getElementById('timer').textContent = `남은 시간: ${timeLeft}s`;
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    alert("시간 초과! 게임이 종료되었습니다.");
-                    exitGame();
-                }
-            }, 1000);
-        }
-
-        function openPreview(fileId) {
-            let file = document.getElementById(fileId);
-            file.style.display = "block";
-        }
-
-        function closeFile(fileId) {
-            document.getElementById(fileId).style.display = "none";
-        }
-
-        function startMenuToggle() {
-            let menu = document.querySelector(".start-menu");
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
-        }
-
-        function revealComment(id) {
-            document.getElementById(id).style.display = "block";
-        }
-
-        function restartGame() {
-            location.reload();
-        }
-
-        function exitGame() {
-            if (confirm("정말 종료하시겠습니까?")) {
-                window.open('', '_self', '');
-                window.close();
-            }
-        }
-
-        function checkPassword() {
-            const password = document.getElementById('password-input').value;
-            if (password === '1234') {  // 예시로 설정된 암호
-                alert("암호가 맞습니다! 탈출 성공!");
-                exitGame();
-            } else {
-                alert("암호가 틀렸습니다. 다시 시도해 주세요.");
-            }
-        }
-    </script>
+    <title>2025 ONFF FESTIVAL</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="startTimer()">
-    <div class="desktop">
-        <div class="icon" onclick="openPreview('file1')">
-            <img src="txtfile.png" width="50" height="56" alt="파일 아이콘">
-            <span>수색 매뉴얼.txt</span>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">HOME</a></li>
+                <li><a href="about.html" class="nav-link">ABOUT</a></li>
+                <li><a href="lineup.html" class="nav-link">PROGRAM</a></li>
+                <li><a href="gallery.html" class="nav-link">GALLERY</a></li>
+                <li><a href="timetable.html" class="nav-link">TIMETABLE</a></li>
+                <li><a href="tickets.html" class="nav-link">TICKETS</a></li>
+            </ul>
         </div>
-        <div class="icon" onclick="openPreview('file2')">
-            <img src="txtfile.png" width="50" height="56" alt="파일 아이콘">
-            <span>F씨 실종 기록.txt</span>
-        </div>
-        <div class="icon" onclick="openPreview('file3')">
-            <img src="txtfile.png" width="50" height="56" alt="파일 아이콘">
-            <span>경비원 보고서.txt</span>
-        </div>
-        
-        <div class="taskbar">
-            <button class="start-btn" onclick="startMenuToggle()">시작</button>
-            <div class="start-menu">
-                <button onclick="restartGame()">🔄 다시 시작</button>
-                <button onclick="exitGame()">❌ 종료</button>
-            </div>
-        </div>
+    </nav>
 
-        <div id="file1" class="window">
-            <div class="title-bar">
-                <span>📄 수색 매뉴얼 - 메모장</span>
-                <button onclick="closeFile('file1')">X</button>
-            </div>
-            <div class="content">
-                탐색 매뉴얼 내용이 여기에 들어갑니다. 
-                <span class="deleted-text">이 문장은 삭제되었습니다.</span> 
-                <button onclick="revealComment('comment1')">(이전 기록 보기)</button>
-                <div id="comment1" class="hidden-comment">[기록 없음]</div>
-                <br><br>
-                <b>문제:</b> 수색을 시작하기 위한 첫 번째 단계는 무엇인가요?
-                <ol>
-                    <li>조사</li>
-                    <li>준비</li>
-                    <li>출발</li>
-                </ol>
-            </div>
+    <!-- Hero Section with Big Illustration -->
+    <section class="hero-new">
+        <div class="hero-background">
+            <img src="images/main-hero.png" alt="ONFF Festival 2025" class="hero-main-image">
         </div>
+    </section>
 
-        <div id="file2" class="window">
-            <div class="title-bar">
-                <span>📄 F씨 실종 기록 - 메모장</span>
-                <button onclick="closeFile('file2')">X</button>
-            </div>
-            <div class="content">
-                실종 기록 내용이 여기에 들어갑니다. ██ [ERROR] ██
-                <div class="hidden-comment">너도 여기 있었구나.</div>
-                <br><br>
-                <b>문제:</b> 실종자가 마지막으로 목격된 장소는 어디인가요?
-                <ol>
-                    <li>도서관</li>
-                    <li>연못</li>
-                    <li>주차장</li>
-                </ol>
-            </div>
-        </div>
-
-        <div id="file3" class="window">
-            <div class="title-bar">
-                <span>📄 경비원 보고서 - 메모장</span>
-                <button onclick="closeFile('file3')">X</button>
-            </div>
-            <div class="content">
-                경비원 보고서 내용이 여기에 들어갑니다. [기록 손실됨]
-                <br><br>
-                <b>문제:</b> 경비원 보고서에 따르면 사건이 발생한 시간은 언제인가요?
-                <ol>
-                    <li>오전 10시</li>
-                    <li>오후 3시</li>
-                    <li>밤 9시</li>
-                </ol>
-            </div>
-        </div>
-
-        <div id="password-container">
+    <!-- Five Zones Section -->
+    <section class="five-zones">
+        <div class="zones-container">
+            <h2 class="zones-title">FIVE ZONES</h2>
+            <p class="zones-subtitle">5개의 존, 무한한 음악, 하나의 밤밤</p>
             
-            <label for="password-input">암호 입력:</label>
-            <input type="text" id="password-input" placeholder="암호를 입력하세요">
-            <button onclick="checkPassword()">확인</button>
-        </div>
+            <div class="zones-grid">
+                <div class="zone-item">
+                    <div class="zone-icon">
+                        <img src="images/zone-food.png" alt="Food Zone" class="zone-img">
+                    </div>
+                    <p class="zone-label">Food</p>
+                </div>
 
-        <div id="timer">남은 시간: 180s</div>
-    </div>
-</body>
-</html>
+                <div class="zone-item">
+                    <div class="zone-icon">
+                        <img src="images/zone-festive.png" alt="Festive Zone" class="zone-img">
+                    </div>
+                    <p class="zone-label">Festive</p>
+                </div>
+
+                <div class="zone-cta">
+                    <a href="tickets.html" class="zone-button">GET YOUR TICKETS!</a>
+                </div>
+
+                <div class="zone-item">
+                    <div class="zone-icon">
+                        <img src="images/zone-capsule.png" alt="Capsule Zone" class="zone-img">
+                    </div>
+                    <p class="zone-label">Capsule</p>
+                </div>
+
+                <div class="zone-item">
+                    <div class="zone-icon">
+                        <img src="images/zone-voice.png" alt="Voice Zone" class="zone-img">
+                    </div>
+                    <p class="zone-label">Voice</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lineup Section -->
+    <section class="lineup">
+        <div class="lineup-container">
+            <h2 class="lineup-title">LINEUP</h2>
+            <div class="lineup-grid">
+                <div class="lineup-card pink">
+                    <div class="card-icon">
+                        <img src="images/artist1.png" alt="Artist 1" class="lineup-img">
+                    </div>
+                    <p class="card-label">Artist 1</p>
+                </div>
+                
+                <div class="lineup-card pink">
+                    <div class="card-icon">
+                        <img src="images/djset1.png" alt="DJ Set" class="lineup-img">
+                    </div>
+                    <p class="card-label">DJ Set</p>
+                </div>
+                
+                <div class="lineup-card lime">
+                    <div class="card-icon">
+                        <img src="images/djset2.png" alt="DJ Set" class="lineup-img">
+                    </div>
+                    <p class="card-label">DJ Set</p>
+                </div>
+                
+                <div class="lineup-card lime">
+                    <div class="card-icon">
+                        <img src="images/djset3.png" alt="DJ Set" class="lineup-img">
+                    </div>
+                    <p class="card-label">DJ Set</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 ONFF FESTIVAL. All rights reserved.</p>
+            <p>Contact: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="afc6c1c9c0efc0c1c9c982c9cad
