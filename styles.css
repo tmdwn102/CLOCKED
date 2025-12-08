@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-html {
-    overflow-x: auto;
-    overflow-y: auto;
-}
-
 :root {
     --lime-green: #D4FF00;
     --hot-pink: #FF4B9E;
@@ -44,13 +39,11 @@ body {
     list-style: none;
     justify-content: center;
     gap: 0;
-    flex-wrap: nowrap;
 }
 
 .nav-menu li {
     flex: 1;
     text-align: center;
-    white-space: nowrap;
 }
 
 .nav-link {
@@ -396,8 +389,7 @@ body {
     color: var(--black);
 }
 
-/* Responsive Design - DISABLED for consistent layout across all devices */
-/* 
+/* Responsive Design */
 @media (max-width: 1024px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -524,19 +516,6 @@ body {
     .content-section {
         padding: 40px 20px;
     }
-}
-*/
-
-/* Fixed layout for all screen sizes */
-body {
-    min-width: 1200px;
-}
-
-.content-container,
-.hero-container,
-.lineup-container,
-.zones-container {
-    min-width: 1200px;
 }
 
 /* Content Pages Styles */
@@ -1315,8 +1294,7 @@ body {
     display: inline-block;
 }
 
-/* Responsive for Timetable - DISABLED */
-/*
+/* Responsive for Timetable */
 @media (max-width: 768px) {
     .time-block {
         grid-template-columns: 1fr;
@@ -1340,4 +1318,3 @@ body {
         font-size: 13px;
     }
 }
-*/
